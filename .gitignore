@@ -6,3 +6,6 @@ lib
 include/openssl
 *.gz
 *.framework
+
+# Cossack Labs packaging
+output
