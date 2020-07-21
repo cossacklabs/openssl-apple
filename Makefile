@@ -11,7 +11,7 @@ endif
 #===== Versioning ==============================================================
 
 ## OpenSSL version to build
-VERSION ?= 1.0.2u
+VERSION ?= 1.1.1g
 
 BUILD_ARCHS   += ios_i386 ios_x86_64 ios_arm64 ios_armv7s ios_armv7
 BUILD_ARCHS   += mac_x86_64

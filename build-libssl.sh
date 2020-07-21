@@ -487,6 +487,7 @@ fi
 # and at https://www.openssl.org/source/old/ for old releases.
 OPENSSL_CHECKSUMS="
   1.0.2u ecd0c6ffb493dd06707d38b14bb4d8c2288bb7033735606569d8f90f89669d16
+  1.1.1g ddb04774f1e32f0c49751e21b67216ac87852ceb056b75209af2443400636d46
 "
 checksum_checked=false
 while read version expectedSHA256; do
