@@ -25,18 +25,18 @@ set -u
 # SCRIPT DEFAULTS
 
 # Default version in case no version is specified
-DEFAULTVERSION="1.0.2u"
+DEFAULTVERSION="1.1.1g"
 
 # Default (=full) set of architectures (OpenSSL <= 1.0.2) or targets (OpenSSL >= 1.1.1) to build
-#DEFAULTARCHS="ios_i386 ios_x86_64 ios_arm64 ios_armv7s ios_armv7 tv_x86_64 tv_arm64 mac_x86_64 watchos_armv7k watchos_arm64_32 watchos_i386"
-#DEFAULTTARGETS="ios-sim-cross-i386 ios-sim-cross-x86_64 ios64-cross-arm64 ios64-cross-arm64e ios-cross-armv7s ios-cross-armv7 tvos-sim-cross-x86_64 tvos64-cross-arm64 macos64-x86_64 watchos-cross-armv7k watchos-cross-arm64_32 watchos-sim-cross-i386"
-DEFAULTARCHS="ios_i386 ios_x86_64 ios_arm64 ios_armv7s ios_armv7 mac_x86_64"
-DEFAULTTARGETS="ios-sim-cross-i386 ios-sim-cross-x86_64 ios64-cross-arm64 ios-cross-armv7s ios-cross-armv7 macos64-x86_64"
+#DEFAULTARCHS="ios_x86_64 ios_arm64 ios_armv7s ios_armv7 tv_x86_64 tv_arm64 mac_x86_64"
+#DEFAULTTARGETS="ios-sim-cross-x86_64 ios64-cross-arm64 ios-cross-armv7s ios-cross-armv7 tvos-sim-cross-x86_64 tvos64-cross-arm64 macos64-x86_64"
+DEFAULTARCHS="ios_x86_64 ios_arm64 tv_x86_64 tv_arm64 mac_x86_64 watchos_armv7k watchos_arm64_32 watchos_i386"
+DEFAULTTARGETS="ios-sim-cross-x86_64 ios64-cross-arm64 ios64-cross-arm64e tvos-sim-cross-x86_64 tvos64-cross-arm64 macos64-x86_64 watchos-cross-armv7k watchos-cross-arm64_32 watchos-sim-cross-i386"
 
 # Minimum iOS/tvOS SDK version to build for
-IOS_MIN_SDK_VERSION="8.0"
+IOS_MIN_SDK_VERSION="12.0"
 TVOS_MIN_SDK_VERSION="12.0"
-MACOS_MIN_SDK_VERSION="10.9"
+MACOS_MIN_SDK_VERSION="10.15"
 WATCHOS_MIN_SDK_VERSION="4.0"
 
 # Init optional env variables (use available variable or default to empty string)

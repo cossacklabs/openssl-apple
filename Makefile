@@ -8,6 +8,24 @@ GOAL := $(MAKECMDGOALS)
 endif
 
 
+#===== Versioning ==============================================================
+
+## OpenSSL version to build
+VERSION ?= 1.0.2u
+
+BUILD_ARCHS   += ios_i386 ios_x86_64 ios_arm64 ios_armv7s ios_armv7
+BUILD_ARCHS   += mac_x86_64
+BUILD_TARGETS += ios-sim-cross-i386 ios-sim-cross-x86_64
+BUILD_TARGETS += ios64-cross-arm64 ios-cross-armv7s ios-cross-armv7
+BUILD_TARGETS += macos64-x86_64
+
+BUILD_FLAGS += --version=$(VERSION)
+BUILD_FLAGS += --archs="$(BUILD_ARCHS)"
+BUILD_FLAGS += --targets="$(BUILD_TARGETS)"
+BUILD_FLAGS += --min-ios-sdk=8.0
+BUILD_FLAGS += --min-macos-sdk=10.9
+
+
 #===== Building ================================================================
 
 ## Output directory
@@ -25,13 +43,13 @@ endif
 .PHONY: build
 
 $(OUTPUT)/done.build:
-	@./build-libssl.sh
+	@./build-libssl.sh $(BUILD_FLAGS)
 	@mkdir -p $(OUTPUT)
 	@touch $(OUTPUT)/done.build
 
 ## Force rebuild of OpenSSL binaries
 rebuild:
-	@./build-libssl.sh
+	@./build-libssl.sh $(BUILD_FLAGS)
 	@mkdir -p $(OUTPUT)
 	@touch $(OUTPUT)/done.build
 ifeq ($(GOAL),rebuild)
@@ -71,14 +89,17 @@ ifeq ($(GOAL),specs)
 	@echo "Now you can commit the changes:"
 	@echo
 	@echo "    git add -p"
-	@echo "    git commit -em \"OpenSSL $$(cat "$(OUTPUT)/version")\""
+	@echo "    git commit -em \"OpenSSL $(VERSION)\""
 	@echo
 	@echo "Submit a pull request against the \"cossacklabs\" branch."
 	@echo "Wait for it to be merged, then prepare a signed release tag:"
 	@echo
 	@echo "    git checkout cossacklabs"
 	@echo "    git pull"
-	@echo "    git tag -sem \"OpenSSL $$(cat "$(OUTPUT)/version")\" v$$(cat "$(OUTPUT)/version")"
+	@echo
+	@echo "    # The tag must contain the 'semversified' version of OpenSSL"
+	@echo "    # (e.g., $$(cat "$(OUTPUT)/version") instead of $(VERSION))"
+	@echo "    git tag -sem \"OpenSSL $(VERSION)\" v$$(cat "$(OUTPUT)/version")"
 	@echo "    git push --tags"
 	@echo
 	@echo "Finally, create a pre-release on GitHub from this tag:"
