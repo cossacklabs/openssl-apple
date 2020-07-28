@@ -13,6 +13,9 @@ endif
 ## OpenSSL version to build
 VERSION ?= 1.0.2u
 
+MIN_IOS_SDK = 8.0
+MIN_OSX_SDK = 10.9
+
 BUILD_ARCHS   += ios_i386 ios_x86_64 ios_arm64 ios_armv7s ios_armv7
 BUILD_ARCHS   += mac_x86_64
 BUILD_TARGETS += ios-sim-cross-i386 ios-sim-cross-x86_64
@@ -22,8 +25,8 @@ BUILD_TARGETS += macos64-x86_64
 BUILD_FLAGS += --version=$(VERSION)
 BUILD_FLAGS += --archs="$(BUILD_ARCHS)"
 BUILD_FLAGS += --targets="$(BUILD_TARGETS)"
-BUILD_FLAGS += --min-ios-sdk=8.0
-BUILD_FLAGS += --min-macos-sdk=10.9
+BUILD_FLAGS += --min-ios-sdk=$(MIN_IOS_SDK)
+BUILD_FLAGS += --min-macos-sdk=$(MIN_OSX_SDK)
 
 
 #===== Building ================================================================

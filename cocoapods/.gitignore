@@ -1,0 +1,3 @@
+# Keep generated file on maintainer's machine only,
+# no need to duplicate it with the template.
+CLOpenSSL.podspec
