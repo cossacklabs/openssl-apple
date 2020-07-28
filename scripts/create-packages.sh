@@ -25,12 +25,12 @@ die() {
 
 if [[ ! -f create-openssl-framework.sh ]]
 then
-    die "Please run \"scripts/create-package.sh\" from repository root."
+    die 'Please run "scripts/create-package.sh" from repository root.'
 fi
 
 if [[ ! -d lib ]]
 then
-    die "No OpenSSL binaries. Please run \"./build-libssl.sh\" first."
+    die 'No OpenSSL binaries. Please run "./build-libssl.sh" first.'
 fi
 
 # Print framework bundle version (CFBundleShortVersionString property).

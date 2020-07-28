@@ -21,7 +21,7 @@ die() {
 
 if [[ ! -f "$OUTPUT/version" ]]
 then
-    die "No package version. Run \"scripts/create-packages.sh\" first."
+    die 'No package version. Run "scripts/create-packages.sh" first.'
 fi
 
 version="$(cat "$OUTPUT/version")"
