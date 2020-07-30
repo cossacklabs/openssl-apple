@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     # Project metadata
     s.name     = "CLOpenSSL"
     s.version  = "#{openssl_version}"
-    s.summary  = "Robust, commercial-grade, and full-featured toolkit for the TLS and SSL protocols as well as a general-purpose cryptography library."
+    s.summary  = "Pre-built OpenSSL framework for iOS and macOS: full-featured toolkit for the TLS and SSL protocols as well as a general-purpose cryptography library."
     s.homepage = "https://www.openssl.org/"
     s.authors  = [
         "Andy Polyakov",
