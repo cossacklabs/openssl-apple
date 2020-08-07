@@ -106,6 +106,10 @@ function get_min_sdk() {
 function get_openssl_version() {
     local opensslv=$1
     local std_version=$(awk '/define OPENSSL_VERSION_TEXT/ && !/-fips/ {print $5}' "$opensslv")
+    if [[ "$NORMALIZE_OPENSSL_VERSION" != "yes" ]]; then
+        echo $std_version
+        return
+    fi
     local generic_version=${std_version%?}
     local subpatch=${std_version: -1}
     local subpatch_number=$(($(printf '%d' \'$subpatch) - 97 + 1))
@@ -119,6 +123,7 @@ if [ $FWTYPE == "dynamic" ]; then
     INSTALL_NAME="@rpath/${FW_EXEC_NAME}"
     COMPAT_VERSION="1.0.0"
     CURRENT_VERSION="1.0.0"
+    NORMALIZE_OPENSSL_VERSION=yes
 
     RX='([A-z]+)([0-9]+(\.[0-9]+)*)-([A-z0-9]+)\.sdk'
 
@@ -206,6 +211,8 @@ if [ $FWTYPE == "dynamic" ]; then
 
     rm bin/*/$FWNAME.dylib
 else
+    NORMALIZE_OPENSSL_VERSION=no
+
     for SYS in ${ALL_SYSTEMS[@]}; do
         SYSDIR="$FWROOT/$SYS"
         FWDIR="$SYSDIR/$FWNAME.framework"
