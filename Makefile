@@ -16,10 +16,10 @@ VERSION ?= 1.1.1g
 MIN_IOS_SDK = 8.0
 MIN_OSX_SDK = 10.9
 
-BUILD_ARCHS   += ios_i386 ios_x86_64 ios_arm64 ios_armv7s ios_armv7
+BUILD_ARCHS   += ios_i386 ios_x86_64 ios_arm64 ios_arm64e ios_armv7s ios_armv7
 BUILD_ARCHS   += mac_x86_64
 BUILD_TARGETS += ios-sim-cross-i386 ios-sim-cross-x86_64
-BUILD_TARGETS += ios64-cross-arm64 ios-cross-armv7s ios-cross-armv7
+BUILD_TARGETS += ios64-cross-arm64 ios64-cross-arm64e ios-cross-armv7s ios-cross-armv7
 BUILD_TARGETS += macos64-x86_64
 
 BUILD_FLAGS += --version=$(VERSION)
