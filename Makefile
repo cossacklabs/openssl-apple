@@ -13,8 +13,8 @@ endif
 ## OpenSSL version to build
 VERSION ?= 1.1.1g
 
-MIN_IOS_SDK = 8.0
-MIN_OSX_SDK = 10.9
+MIN_IOS_SDK = 10.0
+MIN_OSX_SDK = 10.11
 
 BUILD_ARCHS   += ios_i386 ios_x86_64 ios_arm64 ios_arm64e ios_armv7s ios_armv7
 BUILD_ARCHS   += mac_x86_64
