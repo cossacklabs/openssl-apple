@@ -182,6 +182,10 @@ finish_build_loop()
     LIBSSL_WATCHOS+=("${TARGETDIR}/lib/libssl.a")
     LIBCRYPTO_WATCHOS+=("${TARGETDIR}/lib/libcrypto.a")
     OPENSSLCONF_SUFFIX="watchos_${ARCH}"
+  elif [[ "${PLATFORM}" == iPhoneSimulator* ]]; then
+    LIBSSL_IOS+=("${TARGETDIR}/lib/libssl.a")
+    LIBCRYPTO_IOS+=("${TARGETDIR}/lib/libcrypto.a")
+    OPENSSLCONF_SUFFIX="ios_sim_${ARCH}"
   elif [[ "${PLATFORM}" == iPhone* ]]; then
     LIBSSL_IOS+=("${TARGETDIR}/lib/libssl.a")
     LIBCRYPTO_IOS+=("${TARGETDIR}/lib/libcrypto.a")
@@ -615,10 +619,10 @@ if [ ${#OPENSSLCONF_ALL[@]} -gt 1 ]; then
       *_macos_i386.h)
         DEFINE_CONDITION="TARGET_OS_OSX && TARGET_CPU_X86"
       ;;
-      *_ios_x86_64.h)
+      *_ios_sim_x86_64.h)
         DEFINE_CONDITION="TARGET_OS_IOS && TARGET_OS_SIMULATOR && TARGET_CPU_X86_64"
       ;;
-      *_ios_i386.h)
+      *_ios_sim_i386.h)
         DEFINE_CONDITION="TARGET_OS_IOS && TARGET_OS_SIMULATOR && TARGET_CPU_X86"
       ;;
       *_ios_arm64.h)
