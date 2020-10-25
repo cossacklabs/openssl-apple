@@ -12,6 +12,9 @@ How to update to newer OpenSSL version, build, and publish a release.
 
    The version number is in the [`Makefile`](Makefile).
 
+   Increment `PACKAGE_VERSION` if you are repackaging the same OpenSSL version.
+   Otherwise, update `VERSION` to OpenSSL version and reset `PACKAGE_VERSION` to `1`.
+
    Also update tarball checksums in [`build-libssl.sh`](build-libssl.sh).
 
 3. **Update platform configuration.**
@@ -34,9 +37,9 @@ How to update to newer OpenSSL version, build, and publish a release.
    ```shell
    git add carthage
    git commit -S -e -m "OpenSSL 1.1.1g"
-   git tag -s -e -m "OpenSSL 1.1.1g" v1.1.107
+   git tag -s -e -m "OpenSSL 1.1.1g" v1.1.10701
    git push origin cossacklabs # Push the branch
-   git push origin v1.1.107    # Push the tag
+   git push origin v1.1.10701  # Push the tag
    ```
 
    Make will remind you how to do this.

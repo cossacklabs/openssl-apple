@@ -13,6 +13,9 @@ endif
 ## OpenSSL version to build
 VERSION ?= 1.1.1g
 
+## Extra version of the distributed package
+PACKAGE_VERSION ?= 1
+
 MIN_IOS_SDK = 8.0
 MIN_OSX_SDK = 10.9
 
@@ -79,7 +82,7 @@ endif
 .PHONY: packages
 
 $(OUTPUT)/done.packages: $(OUTPUT)/done.build
-	@scripts/create-packages.sh
+	@PACKAGE_VERSION=$(PACKAGE_VERSION) scripts/create-packages.sh
 	@mkdir -p $(OUTPUT)
 	@touch $(OUTPUT)/done.packages
 

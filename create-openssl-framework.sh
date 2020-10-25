@@ -16,6 +16,8 @@ FWTYPE=$1
 FWNAME=openssl
 FWROOT=frameworks
 
+PACKAGE_VERSION="${PACKAGE_VERSION:-1}"
+
 if [ -d $FWROOT ]; then
     echo "Removing previous $FWNAME.framework copies"
     rm -rf $FWROOT
@@ -103,6 +105,12 @@ function get_min_sdk() {
 #   'g' = 103 -> 6 + 1 = 07 (zero-padded)
 #   1.1.107
 #
+# Also, to allow multiple releases of the same OpenSSL packaging
+# tack two extra version digits to the end using PACKAGE_VERSION:
+#
+#   1.1.10701
+#
+# This is what Debian might have called "1.1.1g-1".
 function get_openssl_version() {
     local opensslv=$1
     local std_version=$(awk '/define OPENSSL_VERSION_TEXT/ && !/-fips/ {print $5}' "$opensslv")
@@ -114,7 +122,8 @@ function get_openssl_version() {
     local subpatch=${std_version: -1}
     local subpatch_number=$(($(printf '%d' \'$subpatch) - 97 + 1))
     local normalized_version="${generic_version}$(printf '%02d' $subpatch_number)"
-    echo $normalized_version
+    local package_version="${normalized_version}$(printf '%02d' $PACKAGE_VERSION)"
+    echo $package_version
 }
 
 if [ $FWTYPE == "dynamic" ]; then
