@@ -15,9 +15,11 @@ VERSION ?= 1.1.1g
 
 ## Extra version of the distributed package
 PACKAGE_VERSION ?= 1
+export PACKAGE_VERSION
 
 MIN_IOS_SDK = 10.0
 MIN_OSX_SDK = 10.11
+export MIN_IOS_SDK MIN_OSX_SDK
 
 BUILD_ARCHS   += ios_i386 ios_x86_64 ios_arm64 ios_arm64e ios_armv7s ios_armv7
 BUILD_ARCHS   += mac_x86_64
@@ -94,7 +96,7 @@ endif
 .PHONY: packages
 
 $(OUTPUT)/done.packages: $(OUTPUT)/done.build
-	@PACKAGE_VERSION=$(PACKAGE_VERSION) scripts/create-packages.sh
+	@scripts/create-packages.sh
 	@mkdir -p $(OUTPUT)
 	@touch $(OUTPUT)/done.packages
 
