@@ -16,14 +16,26 @@ VERSION ?= 1.1.1g
 ## Extra version of the distributed package
 PACKAGE_VERSION ?= 1
 
-MIN_IOS_SDK = 8.0
-MIN_OSX_SDK = 10.9
+MIN_IOS_SDK = 10.0
+MIN_OSX_SDK = 10.11
 
 BUILD_ARCHS   += ios_i386 ios_x86_64 ios_arm64 ios_arm64e ios_armv7s ios_armv7
 BUILD_ARCHS   += mac_x86_64
 BUILD_TARGETS += ios-sim-cross-i386 ios-sim-cross-x86_64
 BUILD_TARGETS += ios64-cross-arm64 ios64-cross-arm64e ios-cross-armv7s ios-cross-armv7
 BUILD_TARGETS += macos64-x86_64
+
+# Apple Silicon support is currently experimental. It is available only with
+# beta Xcode versions installed. Once iOS 14 and macOS 11 are released and
+# stable Xcode supports arm64, these settings are going to become default.
+ifeq ($(APPLE_SILICON_SUPPORT),yes)
+BUILD_ARCHS   += mac_arm64
+BUILD_TARGETS += macos64-arm64
+# FIXME(ilammy, 2020-10-22): iOS Simulator build for arm64 temporarily disabled.
+# A single framework cannot contain both iOS and iOS Simulator arm64 slices.
+# XCFrameworks should be able to support this combination in the future.
+# BUILD_TARGETS += ios-sim-cross-arm64
+endif
 
 BUILD_FLAGS += --version=$(VERSION)
 BUILD_FLAGS += --archs="$(BUILD_ARCHS)"
