@@ -211,4 +211,12 @@ EOF
     # These are prebuilt frameworks that will be vendored into the final app.
     s.ios.vendored_frameworks = "#{iPhone_archive_name}/openssl.framework"
     s.osx.vendored_frameworks = "#{macOSX_archive_name}/openssl.framework"
+
+    # FIXME(ilammy, 2020-10-23): use XCFrameworks for full arm64 support
+    # The framework produced by CLOpenSSL does not contain arm64 slice for
+    # iOS Simulator since it conflicts with arm64 slice for the real iOS.
+    # Fixing this requires migration to XCFrameworks and making CLOpenSSL
+    # building arm64 for both iOS and iOS Simulator. See T1406 for status.
+    s.ios.pod_target_xcconfig  = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+    s.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 end
