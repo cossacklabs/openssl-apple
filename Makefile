@@ -11,7 +11,7 @@ endif
 #===== Versioning ==============================================================
 
 ## OpenSSL version to build
-VERSION ?= 1.1.1g
+VERSION ?= 1.1.1h
 
 ## Extra version of the distributed package
 PACKAGE_VERSION ?= 1
