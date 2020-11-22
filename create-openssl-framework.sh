@@ -129,8 +129,6 @@ function get_openssl_version() {
 
 if [ $FWTYPE == "dynamic" ]; then
     DEVELOPER=`xcode-select -print-path`
-    FW_EXEC_NAME="${FWNAME}.framework/${FWNAME}"
-    INSTALL_NAME="@rpath/${FW_EXEC_NAME}"
     COMPAT_VERSION="1.0.0"
     CURRENT_VERSION="1.0.0"
     NORMALIZE_OPENSSL_VERSION=yes
@@ -182,6 +180,13 @@ if [ $FWTYPE == "dynamic" ]; then
         ar -x ../lib/libssl.a
         cd ..
 
+        # macOS frameworks have a bit different structure inside.
+        if [[ $PLATFORM == MacOSX* ]]; then
+            INSTALL_NAME="@rpath/${FWNAME}.framework/Versions/A/${FWNAME}"
+        else
+            INSTALL_NAME="@rpath/${FWNAME}.framework/${FWNAME}"
+        fi
+
         ld obj/*.o \
             -dylib \
             -bitcode_bundle \
@@ -192,8 +197,8 @@ if [ $FWTYPE == "dynamic" ]; then
             -compatibility_version $COMPAT_VERSION \
             -current_version $CURRENT_VERSION \
             -application_extension \
+            -install_name $INSTALL_NAME \
             -o $FWNAME.dylib
-        install_name_tool -id $INSTALL_NAME $FWNAME.dylib
 
         cd ..
     done

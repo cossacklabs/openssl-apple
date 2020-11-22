@@ -204,10 +204,6 @@ EOF
         done
     EOF
 
-    # Tell CocoaPods that the frameworks we publish are "static frameworks".
-    # This ensures correct resolution of transitive dependencies.
-    s.static_framework = true
-
     # Set the minimum platform versions. We just know the right ones from the
     # prebuilt frameworks we download.
     s.ios.deployment_target = min_target_ios

@@ -71,10 +71,10 @@ sed -e "s/%%OPENSSL_VERSION%%/$version/g" \
     -e "s!%%GITHUB_REPO%%!$GITHUB_REPO!g" \
     -e "s/%%MIN_IOS_SDK%%/$MIN_IOS_SDK/g" \
     -e "s/%%MIN_OSX_SDK%%/$MIN_OSX_SDK/g" \
-    -e "s/%%IPHONE_ARCHIVE_NAME%%/$IPHONE_STATIC_NAME/g" \
-    -e "s/%%IPHONE_ARCHIVE_HASH%%/$(shasum -a 256 "$OUTPUT/$IPHONE_STATIC_NAME" | awk '{print $1}')/g" \
-    -e "s/%%MACOSX_ARCHIVE_NAME%%/$MACOSX_STATIC_NAME/g" \
-    -e "s/%%MACOSX_ARCHIVE_HASH%%/$(shasum -a 256 "$OUTPUT/$MACOSX_STATIC_NAME" | awk '{print $1}')/g" \
+    -e "s/%%IPHONE_ARCHIVE_NAME%%/$IPHONE_DYNAMIC_NAME/g" \
+    -e "s/%%IPHONE_ARCHIVE_HASH%%/$(shasum -a 256 "$OUTPUT/$IPHONE_DYNAMIC_NAME" | awk '{print $1}')/g" \
+    -e "s/%%MACOSX_ARCHIVE_NAME%%/$MACOSX_DYNAMIC_NAME/g" \
+    -e "s/%%MACOSX_ARCHIVE_HASH%%/$(shasum -a 256 "$OUTPUT/$MACOSX_DYNAMIC_NAME" | awk '{print $1}')/g" \
     $podspec.template > $podspec
 echo "Updated $podspec"
 echo
