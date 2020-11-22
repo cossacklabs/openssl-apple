@@ -14,7 +14,7 @@ endif
 VERSION ?= 1.1.1h
 
 ## Extra version of the distributed package
-PACKAGE_VERSION ?= 3
+PACKAGE_VERSION ?= 2
 export PACKAGE_VERSION
 
 MIN_IOS_SDK = 10.0
