@@ -36,15 +36,16 @@ How to update to newer OpenSSL version, build, and publish a release.
 
 5. **Update SPM package settings**
 
-	 In the [`Package.swift`](Package.swift) file
-     update binary framework link with the upcoming version (semver format)
-     https://github.com/cossacklabs/openssl-apple/releases/download/1.1.10701/openssl-static-xcframework.zip
+	 Update [`Package.swift`](Package.swift) file with the new URL of the binary framework and its checksum:
 
-     Also, update xcframework checksum.
- 
-     ```shell
-     swift package compute-checksum output/openssl-static-xcframework.zip
-     ```
+   ```swift
+   .binaryTarget(name: "openssl",
+              // update version in URL path
+              url:"https://github.com/cossacklabs/openssl-apple/releases/download/1.1.10701/openssl-static-xcframework.zip",
+              // Run from package directory:
+              // swift package compute-checksum output/openssl-static-xcframework.zip
+              checksum: "77b9a36297a2cade7bb6db5282570740a2af7b1e5083f126f46ca2671b14d73e"),
+   ```
 
 6. **Commit, tag, push the release.**
 

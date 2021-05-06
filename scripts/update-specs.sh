@@ -51,7 +51,7 @@ do
     else
         (
             head -1 "$spec" 2> /dev/null || echo "{"
-            echo "    \"$version\": \"$GITHUB_REPO/releases/download/v$version/$package\","
+            echo "    \"$version\": \"$GITHUB_REPO/releases/download/$version/$package\","
             tail +2 "$spec" 2> /dev/null || echo "}"
         ) > "$OUTPUT/tmp.spec"
         mv "$OUTPUT/tmp.spec" "$spec"

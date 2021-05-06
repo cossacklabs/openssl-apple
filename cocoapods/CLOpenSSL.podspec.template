@@ -45,7 +45,7 @@ Pod::Spec.new do |s|
 
     # Source code location. Actually, this is the script that builds OpenSSL
     # after downloading its source tarball from the official site.
-    s.source  = { :git => "#{github_repo}.git", :tag => "v#{openssl_version}" }
+    s.source  = { :git => "#{github_repo}.git", :tag => "#{openssl_version}" }
     s.license = {
         :type => "OpenSSL/SSLeay",
         :text => <<~EOF

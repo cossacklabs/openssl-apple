@@ -22,3 +22,5 @@ OpenSSL versions are translated to Carthage versions by renumbering like this:
 | 1.1.1g          | 1.1.107          |
 | 1.1.1h          | 1.1.10801        |
 | 1.1.1h          | 1.1.10802        | (no changes in OpenSSL, added arm64)
+| 1.1.1h          | 1.1.10803        | (no changes in OpenSSL, XCF support)
+| 1.1.1k          | 1.1.11101        | (XCF-only)
